@@ -1,2 +1,3 @@
-# memory-card
-Memory Card project for "The Odin Project" curriculum
+# Memory Card
+
+Memory Card project for "The Odin Project" curriculum.
