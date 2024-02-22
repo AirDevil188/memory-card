@@ -1,8 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Cards from "./components/Cards";
 
+const clickedCards = [];
 const randomNumbersArr = new Set([]);
 
 export default function App() {
+  const [cards, setCards] = useState([]);
+  const [count, setCount] = useState(0);
+
   useEffect(() => {
     const key = () => {
       console.log(randomNumbersArr, "arr");
@@ -29,5 +34,23 @@ export default function App() {
     }
   };
 
+  function handleClick(e) {
+    if (clickedCards.includes(e.target.id)) {
+      setCount(0);
+    } else {
+      setCount((count) => count + 1);
+      clickedCards.push(e.target.id);
+    }
+  }
+
   generateRandomNumbers(5);
+
+  return (
+    <>
+      <section className="cards-section">
+        <Cards data={cards} onClick={handleClick} />
+      </section>
+      <p>{count}</p>
+    </>
+  );
 }
