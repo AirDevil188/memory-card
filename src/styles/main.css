@@ -7,3 +7,18 @@ html {
 *::after {
   box-sizing: inherit;
 }
+
+.cards-section {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+}
+
+.card {
+  border: 1px solid black;
+  padding: 2rem;
+}
+
+.card > img {
+  border: 1px solid black;
+}
