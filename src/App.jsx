@@ -5,12 +5,13 @@ import {
   randomNumbersArr,
 } from "./helper/generateRandomNumbers";
 import { shuffle } from "./helper/shuffleArray";
+import Score from "./components/Score";
 
 const clickedCards = [];
 
 export default function App() {
   const [cards, setCards] = useState([]);
-  const [count, setCount] = useState(0);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     const fetchAPI = () => {
@@ -18,8 +19,10 @@ export default function App() {
         const fetchRequest = await fetch(
           `https://pokeapi.co/api/v2/pokemon/${number}/`
         );
-        const data = await fetchRequest.json();
-        setCards((oldArray) => [...oldArray, data]);
+        if (fetchRequest.ok) {
+          const data = await fetchRequest.json();
+          setCards((oldArray) => [...oldArray, data]);
+        } else console.error("There was an error ");
       });
     };
 
@@ -30,9 +33,9 @@ export default function App() {
 
   function handleClick(e) {
     if (clickedCards.includes(e.target.id)) {
-      setCount(0);
+      setScore(0);
     } else {
-      setCount((count) => count + 1);
+      setScore((score) => score + 1);
       clickedCards.push(e.target.id);
       shuffle(cards);
     }
@@ -41,10 +44,24 @@ export default function App() {
   generateRandomNumbers(5);
   return (
     <>
+      <Score score={score} length={cards.length}></Score>
       <section className="cards-section">
-        <Cards data={cards} onClick={handleClick} />
+        {cards.length !== 5 ? (
+          <p>Loading</p>
+        ) : (
+          <Cards data={cards} onClick={handleClick} />
+        )}
       </section>
-      <p>{count}</p>
+      {score === cards.length ? (
+        <dialog open className="dialog">
+          <p>You Have Won!</p>
+        </dialog>
+      ) : null}
+      {clickedCards.length !== 0 && score === 0 ? (
+        <dialog open className="dialog">
+          <p>You Lost!</p>
+        </dialog>
+      ) : null}
     </>
   );
 }

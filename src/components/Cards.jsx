@@ -1,4 +1,4 @@
-export default function Card({ data, onClick, onClick2 }) {
+export default function Card({ data, onClick }) {
   return (
     <>
       {data.map((card) => {
