@@ -4,6 +4,7 @@ import {
   generateRandomNumbers,
   randomNumbersArr,
 } from "./helper/generateRandomNumbers";
+import { shuffle } from "./helper/shuffleArray";
 
 const clickedCards = [];
 
@@ -33,6 +34,7 @@ export default function App() {
     } else {
       setCount((count) => count + 1);
       clickedCards.push(e.target.id);
+      shuffle(cards);
     }
   }
 
