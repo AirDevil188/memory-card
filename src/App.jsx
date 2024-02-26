@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import Cards from "./components/Cards";
+import {
+  generateRandomNumbers,
+  randomNumbersArr,
+} from "./helper/generateRandomNumbers";
 
 const clickedCards = [];
-const randomNumbersArr = new Set([]);
 
 export default function App() {
   const [cards, setCards] = useState([]);
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const key = () => {
-      console.log(randomNumbersArr, "arr");
+    const fetchAPI = () => {
       randomNumbersArr.forEach(async (number) => {
         const fetchRequest = await fetch(
           `https://pokeapi.co/api/v2/pokemon/${number}/`
@@ -21,18 +23,9 @@ export default function App() {
     };
 
     return () => {
-      key();
+      fetchAPI();
     };
   }, []);
-
-  const generateRandomNumbers = (length) => {
-    const randomNumber = Math.floor(Math.random() * 150 + 1);
-    while (randomNumbersArr.size !== length) {
-      if (!randomNumbersArr.has(randomNumber))
-        randomNumbersArr.add(randomNumber);
-      else return generateRandomNumbers(length);
-    }
-  };
 
   function handleClick(e) {
     if (clickedCards.includes(e.target.id)) {
@@ -44,7 +37,6 @@ export default function App() {
   }
 
   generateRandomNumbers(5);
-
   return (
     <>
       <section className="cards-section">

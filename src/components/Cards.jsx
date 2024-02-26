@@ -1,9 +1,9 @@
-export default function Card({ data, onClick }) {
+export default function Card({ data, onClick, onClick2 }) {
   return (
     <>
       {data.map((card) => {
         return (
-          <div className="card" key={card.id} onClick={onClick} id={card.id}>
+          <div className="card" key={card.id} onClick={onClick}>
             <img
               src={card.sprites.front_default}
               alt={card.name}
