@@ -7,6 +7,7 @@ import {
 import { shuffle } from "./helper/shuffleArray";
 import Score from "./components/Score";
 import StartingScreen from "./components/StartingScreen";
+import EndScreen from "./components/EndScreen";
 
 const clickedCards = [];
 
@@ -14,6 +15,7 @@ export default function App() {
   const [cards, setCards] = useState([]);
   const [score, setScore] = useState(0);
   const [difficulty, setDifficulty] = useState(false);
+  const [clickEnabled, setClick] = useState(true);
 
   useEffect(() => {
     const fetchAPI = () => {
@@ -33,6 +35,13 @@ export default function App() {
       fetchAPI();
     };
   }, [difficulty]);
+
+  useEffect(() => {
+    return (score === cards.length && cards.length !== 0) ||
+      (clickedCards.length !== 0 && score === 0)
+      ? setClick(false)
+      : setClick(true);
+  }, [score, cards.length]);
 
   function handleScore(e) {
     if (clickedCards.includes(e.target.id)) {
@@ -68,20 +77,16 @@ export default function App() {
       ) : (
         <StartingScreen handleClick={handleDifficulty}></StartingScreen>
       )}
-      {}
 
       <section className="cards-section">
-        {<Cards data={cards} onClick={handleScore} />}
+        {<Cards data={cards} onClick={clickEnabled ? handleScore : null} />}
       </section>
-      {score === cards.length && clickedCards.length !== 0 ? (
-        <dialog open className="dialog">
-          <p>You Have Won!</p>
-        </dialog>
+
+      {!clickEnabled && score === cards.length ? (
+        <EndScreen text="You Win!"></EndScreen>
       ) : null}
-      {clickedCards.length !== 0 && score === 0 ? (
-        <dialog open className="dialog">
-          <p>You Lost!</p>
-        </dialog>
+      {!clickEnabled && score === 0 && clickedCards.length !== 0 ? (
+        <EndScreen text="You Lose!"></EndScreen>
       ) : null}
     </>
   );
