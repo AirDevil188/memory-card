@@ -6,4 +6,5 @@ export const generateRandomNumbers = (length) => {
     if (!randomNumbersArr.has(randomNumber)) randomNumbersArr.add(randomNumber);
     else return generateRandomNumbers(length);
   }
+  console.log(randomNumbersArr);
 };

@@ -6,12 +6,14 @@ import {
 } from "./helper/generateRandomNumbers";
 import { shuffle } from "./helper/shuffleArray";
 import Score from "./components/Score";
+import StartingScreen from "./components/StartingScreen";
 
 const clickedCards = [];
 
 export default function App() {
   const [cards, setCards] = useState([]);
   const [score, setScore] = useState(0);
+  const [difficulty, setDifficulty] = useState(false);
 
   useEffect(() => {
     const fetchAPI = () => {
@@ -22,16 +24,17 @@ export default function App() {
         if (fetchRequest.ok) {
           const data = await fetchRequest.json();
           setCards((oldArray) => [...oldArray, data]);
-        } else console.error("There was an error ");
+          console.log(data);
+        } else console.error("There was an error with fetching");
       });
     };
 
     return () => {
       fetchAPI();
     };
-  }, []);
+  }, [difficulty]);
 
-  function handleClick(e) {
+  function handleScore(e) {
     if (clickedCards.includes(e.target.id)) {
       setScore(0);
     } else {
@@ -41,18 +44,36 @@ export default function App() {
     }
   }
 
-  generateRandomNumbers(5);
+  function handleDifficulty(e) {
+    switch (e.target.textContent) {
+      case "Easy":
+        generateRandomNumbers(5);
+        setDifficulty(true);
+        break;
+      case "Medium":
+        generateRandomNumbers(10);
+        setDifficulty(true);
+        break;
+      case "Hard":
+        generateRandomNumbers(15);
+        setDifficulty(true);
+        break;
+    }
+  }
+
   return (
     <>
-      <Score score={score} length={cards.length}></Score>
+      {difficulty ? (
+        <Score score={score} length={cards.length}></Score>
+      ) : (
+        <StartingScreen handleClick={handleDifficulty}></StartingScreen>
+      )}
+      {}
+
       <section className="cards-section">
-        {cards.length !== 5 ? (
-          <p>Loading</p>
-        ) : (
-          <Cards data={cards} onClick={handleClick} />
-        )}
+        {<Cards data={cards} onClick={handleScore} />}
       </section>
-      {score === cards.length ? (
+      {score === cards.length && clickedCards.length !== 0 ? (
         <dialog open className="dialog">
           <p>You Have Won!</p>
         </dialog>
