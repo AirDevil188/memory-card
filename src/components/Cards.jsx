@@ -3,7 +3,7 @@ export default function Card({ data, onClick }) {
     <>
       {data.map((card) => {
         return (
-          <div className="card" key={card.id} onClick={onClick}>
+          <div className="card" key={card.id} onClick={onClick} id={card.id}>
             <img
               src={card.sprites.front_default}
               alt={card.name}

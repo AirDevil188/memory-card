@@ -1,4 +1,4 @@
-export const randomNumbersArr = new Set([]);
+export let randomNumbersArr = new Set([]);
 
 export const generateRandomNumbers = (length) => {
   const randomNumber = Math.floor(Math.random() * 150 + 1);
@@ -6,5 +6,9 @@ export const generateRandomNumbers = (length) => {
     if (!randomNumbersArr.has(randomNumber)) randomNumbersArr.add(randomNumber);
     else return generateRandomNumbers(length);
   }
-  console.log(randomNumbersArr);
 };
+
+export function setRandomNumbers(array) {
+  randomNumbersArr = array;
+  return array;
+}
