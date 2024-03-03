@@ -9,9 +9,6 @@ export default function EndScreen({
         <div className="section-container">
           <dialog open className="modal">
             <h3>{text}</h3>
-            <button type="button" onClick={handleKeepPlaying}>
-              Play Again
-            </button>
             <button type="button" onClick={handlePlayAgain}>
               Main Menu
             </button>

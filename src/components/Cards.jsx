@@ -9,7 +9,7 @@ export default function Card({ data, onClick }) {
               alt={card.name}
               id={card.id}
             />
-            <h3>{card.name}</h3>
+            <h3 id={card.id}>{card.name}</h3>
           </div>
         );
       })}
