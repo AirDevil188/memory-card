@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "VT323";
+  src: url("./src/assets/fonts/VT323-Regular.woff2") format("woff2");
+}
+
 html {
   box-sizing: border-box;
 }
@@ -6,6 +11,15 @@ html {
 *::before,
 *::after {
   box-sizing: inherit;
+}
+
+body {
+  font-family: "VT323", monospace;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 2rem;
+  background: url(./src/assets/img/background.webp) center fixed;
+  background-size: cover;
 }
 
 .cards-section {
