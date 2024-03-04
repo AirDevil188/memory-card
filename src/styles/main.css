@@ -17,15 +17,56 @@ body {
   font-family: "VT323", monospace;
   font-weight: 900;
   font-style: normal;
-  font-size: 2rem;
   background: url(./src/assets/img/background.webp) center fixed;
   background-size: cover;
 }
 
+h1 {
+  padding: 0;
+  margin: 0;
+}
+
+dialog {
+  border: 5px dotted black;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "VT323", monospace;
+  font-size: 2rem;
+}
+
+dialog > div {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 5px;
+}
+
+.title-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
 .cards-section {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 1rem;
   justify-items: center;
+}
+
+.starting-screen-section {
+  display: flex;
+  align-items: center;
+  flex-flow: column wrap;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.dialog-container {
+  padding: 3rem;
+  background-color: #fff;
 }
 
 .card {
