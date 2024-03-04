@@ -16,6 +16,7 @@ export default function App() {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [status, setStatus] = useState("start");
+  const [isFetching, setIsFetching] = useState(false);
 
   const start = status === "start";
   const playingGame = status === "playing";
@@ -35,7 +36,7 @@ export default function App() {
   };
   useEffect(() => {
     fetchAPI();
-  }, [start]);
+  }, [isFetching]);
 
   useEffect(() => {
     if (score > highScore) {
@@ -61,6 +62,7 @@ export default function App() {
     setClickedCards([]);
     setRandomNumbers(new Set([]));
     setCards(newCards);
+    setStatus("playing");
   }
 
   function handleScore(e) {
@@ -69,12 +71,11 @@ export default function App() {
       setStatus("gameOver");
     } else {
       setScore((score) => score + 1);
-      console.log(highScore);
       clickedCards.push(e.target.id);
       shuffle(cards);
-    }
-    if (cards.length === clickedCards.length) {
-      setStatus("win");
+      if (cards.length === clickedCards.length) {
+        setStatus("win");
+      }
     }
   }
 
@@ -84,16 +85,19 @@ export default function App() {
         generateRandomNumbers(5);
         reconstruct();
         setStatus("playing");
+        toggleIsFetching();
         break;
       case "Medium":
         generateRandomNumbers(10);
         reconstruct();
         setStatus("playing");
+        toggleIsFetching();
         break;
       case "Hard":
         generateRandomNumbers(15);
         reconstruct();
         setStatus("playing");
+        toggleIsFetching();
         break;
     }
   }
@@ -107,11 +111,18 @@ export default function App() {
   }
 
   function handleKeepPlaying() {
+    function addCardsToArray() {
+      if (cards.length < 15) generateRandomNumbers(cards.length + 1);
+      else generateRandomNumbers(cards.length);
+    }
     restartGame();
-    generateRandomNumbers(cards.length);
-    setStatus("playing");
+    addCardsToArray();
+    toggleIsFetching();
   }
 
+  const toggleIsFetching = () => {
+    setIsFetching((current) => !current);
+  };
   return (
     <>
       {start && !playingGame ? (
@@ -131,6 +142,7 @@ export default function App() {
 
       {win ? (
         <EndScreen
+          state={win}
           text="You Win!"
           handleKeepPlaying={handleKeepPlaying}
           handlePlayAgain={handlePlayAgain}
@@ -138,6 +150,7 @@ export default function App() {
       ) : null}
       {gameOver ? (
         <EndScreen
+          state={win}
           text="You Lose!"
           handlePlayAgain={handlePlayAgain}
           handleKeepPlaying={handleKeepPlaying}
