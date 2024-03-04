@@ -72,10 +72,9 @@ export default function App() {
     } else {
       setScore((score) => score + 1);
       clickedCards.push(e.target.id);
-      shuffle(cards);
       if (cards.length === clickedCards.length) {
         setStatus("win");
-      }
+      } else shuffle(cards);
     }
   }
 
