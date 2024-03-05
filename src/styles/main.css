@@ -82,6 +82,7 @@ h1 {
 }
 .card {
   display: flex;
+  cursor: pointer;
   flex-flow: column wrap;
   text-align: center;
   background-color: #fff;
@@ -94,6 +95,9 @@ h1 {
   text-transform: uppercase;
 }
 
+.card:hover {
+  background-color: #ccc;
+}
 .card-content {
   border-image: url(./src/assets/img/pokeball.png);
   border-width: 40px;
