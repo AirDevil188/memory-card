@@ -6,7 +6,7 @@ export default function Score({ score, highScore, length }) {
       </div>
       <div className="score-container">
         <p>Your Score: {score}</p>
-        <p>Your High Score:{highScore}</p>
+        <p>Your High Score: {highScore}</p>
         <p>
           {score} / {length}
         </p>
