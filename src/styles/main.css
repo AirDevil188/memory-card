@@ -28,18 +28,17 @@ h1 {
 }
 
 #modal {
-  width: 90%;
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-}
-
-.dialog-container {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
 }
 
 .starting-screen-section {
@@ -54,17 +53,29 @@ h1 {
   justify-items: center;
 }
 
-.dialog-container {
+.modal-content {
+  display: flex;
+  margin: 1rem;
+  flex-flow: column wrap;
+  justify-content: center;
   padding: 3rem;
   background-color: #fff;
+  align-items: center;
+  border: 3px dashed black;
+  font-size: 1.5rem;
+  gap: 1rem;
 }
 
-.dialog-container > button {
+.modal-content > button {
   cursor: pointer;
   background: none;
   border: none;
   font-family: "VT323", monospace;
   font-size: 2rem;
+}
+
+.modal-content > img {
+  width: 150px;
 }
 .gamescore-section {
   display: flex;

@@ -7,9 +7,14 @@ export default function EndScreen({
   return (
     <>
       <section className="dialogue-section">
-        <div className="section-container">
-          <dialog id="modal" open>
+        <dialog id="modal" open>
+          <div className="modal-content">
             <h3>{text}</h3>
+            {state ? (
+              <img src="./src/assets/img/trophy.webp"></img>
+            ) : (
+              <img src="./src/assets/img/gameover.webp"></img>
+            )}
             {state ? (
               <button type="button" onClick={handleKeepPlaying}>
                 Play Again
@@ -18,8 +23,8 @@ export default function EndScreen({
             <button type="button" onClick={handlePlayAgain}>
               Main Menu
             </button>
-          </dialog>
-        </div>
+          </div>
+        </dialog>
       </section>
     </>
   );
