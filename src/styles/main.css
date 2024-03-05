@@ -67,12 +67,20 @@ h1 {
   font-size: 2rem;
 }
 .card {
-  border: 1px solid black;
+  display: flex;
+  flex-flow: column wrap;
+  text-align: center;
+  background-color: #fff;
+  border: 3px solid black;
   padding: 2rem;
+  margin: 1rem;
+  font-size: 1.3rem;
+  text-transform: uppercase;
 }
 
 .card > img {
-  border: 1px solid black;
+  min-width: 150px;
+  height: auto;
 }
 
 .loading-container {
@@ -83,6 +91,6 @@ h1 {
 }
 
 .loading-container > img {
-  width: 200px;
+  max-width: 200px;
   height: auto;
 }
