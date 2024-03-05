@@ -17,6 +17,7 @@ export default function App() {
   const [highScore, setHighScore] = useState(0);
   const [status, setStatus] = useState("start");
   const [isFetching, setIsFetching] = useState(false);
+  const [loading, setLoading] = useState("true");
 
   const start = status === "start";
   const playingGame = status === "playing";
@@ -25,15 +26,17 @@ export default function App() {
 
   const fetchAPI = () => {
     randomNumbersArr.forEach(async (number) => {
-      const fetchRequest = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${number}/`
-      );
-      if (fetchRequest.ok) {
-        const data = await fetchRequest.json();
-        setCards((oldArray) => [...oldArray, data]);
-      } else console.error("There was an error with fetching");
+      fetch(`https://pokeapi.co/api/v2/pokemon/${number}/`)
+        .then((response) => response.json())
+        .then((data) => {
+          setCards((oldArray) => [...oldArray, data]);
+          setTimeout(() => {
+            setLoading(false);
+          }, 1000);
+        });
     });
   };
+
   useEffect(() => {
     fetchAPI();
   }, [isFetching]);
@@ -121,23 +124,39 @@ export default function App() {
 
   const toggleIsFetching = () => {
     setIsFetching((current) => !current);
+    setLoading(true);
   };
+
   return (
     <>
-      {start && !playingGame ? (
+      {start ? (
         <StartingScreen handleClick={handleDifficulty}></StartingScreen>
       ) : (
-        <Score
-          score={score}
-          length={cards.length}
-          highScore={highScore}
-        ></Score>
+        <>
+          <Score
+            score={score}
+            length={cards.length}
+            highScore={highScore}
+          ></Score>
+          {!loading ? (
+            <section className="cards-section">
+              {
+                <Cards
+                  data={cards}
+                  onClick={playingGame ? handleScore : null}
+                />
+              }
+            </section>
+          ) : (
+            <section className="loading-section">
+              <div className="loading-container">
+                <img src="./src/assets/img/loading.gif"></img>
+                <h3>Loading...</h3>
+              </div>
+            </section>
+          )}
+        </>
       )}
-      {playingGame || gameOver || win ? (
-        <section className="cards-section">
-          {<Cards data={cards} onClick={playingGame ? handleScore : null} />}
-        </section>
-      ) : null}
 
       {win ? (
         <EndScreen

@@ -74,3 +74,15 @@ h1 {
 .card > img {
   border: 1px solid black;
 }
+
+.loading-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+}
+
+.loading-container > img {
+  width: 200px;
+  height: auto;
+}
