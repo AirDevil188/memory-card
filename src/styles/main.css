@@ -110,7 +110,7 @@ h1 {
   background-color: #ccc;
 }
 .card-content {
-  border-image: url(./src/assets/img/pokeball.png);
+  border-image: url(./src/assets/img/pokeball.webp);
   border-width: 40px;
   border-image-outset: 46px;
   border-style: solid;
