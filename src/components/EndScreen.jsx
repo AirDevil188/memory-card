@@ -8,7 +8,7 @@ export default function EndScreen({
     <>
       <section className="dialogue-section">
         <div className="section-container">
-          <dialog open className="modal">
+          <dialog id="modal" open>
             <h3>{text}</h3>
             {state ? (
               <button type="button" onClick={handleKeepPlaying}>
