@@ -66,6 +66,20 @@ h1 {
   font-family: "VT323", monospace;
   font-size: 2rem;
 }
+.gamescore-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-flow: column wrap;
+}
+
+.score-container {
+  display: flex;
+  font-size: 1.5rem;
+  flex-flow: column wrap;
+  align-items: center;
+  gap: 1rem;
+}
 .card {
   display: flex;
   flex-flow: column wrap;
