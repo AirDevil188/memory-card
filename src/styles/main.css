@@ -51,6 +51,7 @@ h1 {
   grid-template-rows: repeat(5, 1fr);
   gap: 1rem;
   justify-items: center;
+  justify-content: center;
 }
 
 .modal-content {
@@ -77,6 +78,7 @@ h1 {
 .modal-content > img {
   width: 150px;
 }
+
 .gamescore-section {
   display: flex;
   align-items: center;
@@ -99,7 +101,6 @@ h1 {
   background-color: #fff;
   border: 3px dashed black;
   border-radius: 15px;
-
   padding: 2rem;
   margin: 1rem;
   font-size: 1.3rem;
@@ -131,4 +132,16 @@ h1 {
 .loading-container > img {
   max-width: 200px;
   height: auto;
+}
+
+@media (min-width: 550px) {
+  .cards-section {
+    grid-template-columns: repeat(auto-fit, 250px);
+    grid-template-rows: auto;
+    gap: 2rem;
+  }
+  .card-content {
+    border-width: 30px;
+    border-image-outset: 40px;
+  }
 }
