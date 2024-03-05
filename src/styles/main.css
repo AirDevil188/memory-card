@@ -47,16 +47,8 @@ h1 {
   justify-content: center;
 }
 
-.cards-section {
-  display: grid;
-  grid-template-rows: repeat(5, 1fr);
-  gap: 1rem;
-  justify-items: center;
-  justify-content: center;
-}
-
 .modal-content {
-  width: 50%;
+  width: 100%;
   display: flex;
   margin: 1rem;
   flex-flow: column wrap;
@@ -95,6 +87,16 @@ h1 {
   align-items: center;
   gap: 1rem;
 }
+
+.cards-section {
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  gap: 1rem;
+  justify-items: center;
+  justify-content: center;
+  margin: 1rem;
+}
+
 .card {
   display: flex;
   cursor: pointer;
@@ -145,5 +147,8 @@ h1 {
   .card-content {
     border-width: 30px;
     border-image-outset: 40px;
+  }
+  .modal-content {
+    width: 50%;
   }
 }
