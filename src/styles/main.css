@@ -1,6 +1,6 @@
 @font-face {
   font-family: "VT323";
-  src: url("./src/assets/fonts/VT323-Regular.woff2") format("woff2");
+  src: url("/assets/fonts/VT323-Regular.woff2") format("woff2");
 }
 
 html {
@@ -19,7 +19,7 @@ body {
   font-family: "VT323", monospace;
   font-weight: 900;
   font-style: normal;
-  background: url(./src/assets/img/background.webp) center fixed;
+  background: url(/assets/img/background.webp) center fixed;
   background-size: cover;
 }
 
@@ -119,7 +119,7 @@ h1 {
   transition: 500ms linear;
 }
 .card-content {
-  border-image: url(./src/assets/img/pokeball.webp);
+  border-image: url(/assets/img/pokeball.webp);
   border-width: 40px;
   border-image-outset: 46px;
   border-style: solid;

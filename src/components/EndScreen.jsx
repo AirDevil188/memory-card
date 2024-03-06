@@ -11,9 +11,9 @@ export default function EndScreen({
           <div className="modal-content">
             <h3>{text}</h3>
             {state ? (
-              <img src="./src/assets/img/trophy.webp"></img>
+              <img src="./assets/img/trophy.webp"></img>
             ) : (
-              <img src="./src/assets/img/gameover.webp"></img>
+              <img src="./assets/img/gameover.webp"></img>
             )}
             {state ? (
               <button type="button" onClick={handleKeepPlaying}>

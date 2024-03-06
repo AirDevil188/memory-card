@@ -150,7 +150,7 @@ export default function App() {
           ) : (
             <section className="loading-section">
               <div className="loading-container">
-                <img src="./src/assets/img/loading.gif"></img>
+                <img src="./assets/img/loading.gif"></img>
                 <h3>Loading...</h3>
               </div>
             </section>
