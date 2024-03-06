@@ -17,7 +17,7 @@ export default function EndScreen({
             )}
             {state ? (
               <button type="button" onClick={handleKeepPlaying}>
-                Play Again
+                Keep Playing
               </button>
             ) : null}
             <button type="button" onClick={handlePlayAgain}>
