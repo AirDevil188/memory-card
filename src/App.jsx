@@ -61,7 +61,6 @@ export default function App() {
 
   function restartGame() {
     const newCards = [];
-    setScore(0);
     setClickedCards([]);
     setRandomNumbers(new Set([]));
     setCards(newCards);
