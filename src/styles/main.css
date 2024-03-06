@@ -28,6 +28,7 @@ h1 {
 }
 
 #modal {
+  animation: fade-in 0.5s;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -59,6 +60,7 @@ h1 {
   border: 3px dashed black;
   font-size: 1.5rem;
   gap: 1rem;
+  animation: fade-in 0.5;
 }
 
 .modal-content > button {
@@ -95,6 +97,7 @@ h1 {
   justify-items: center;
   justify-content: center;
   margin: 1rem;
+  animation: fade-in 0.3s;
 }
 
 .card {
@@ -113,6 +116,7 @@ h1 {
 
 .card:hover {
   background-color: #ccc;
+  transition: 500ms linear;
 }
 .card-content {
   border-image: url(./src/assets/img/pokeball.webp);
@@ -150,5 +154,15 @@ h1 {
   }
   .modal-content {
     width: 50%;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
