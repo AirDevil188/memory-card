@@ -64,6 +64,7 @@ export default function App() {
     setClickedCards([]);
     setRandomNumbers(new Set([]));
     setCards(newCards);
+    setScore(0);
     setStatus("playing");
   }
 
